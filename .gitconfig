@@ -1,0 +1,31 @@
+[user]
+	email = v.daniyan@gmail.com
+	name  = Vladimir Daniyan
+[color]
+    ui = true
+[core]
+    editor = vim
+    untrackedCache = true
+[submodule]
+    fetchJobs = 4
+[diff]
+    compactionHeuristic = true
+[merge]
+    conflictstyle = diff3
+    log = 50
+    #tool = vimdiff
+    tool = splice
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
+[alias]
+    tree = log --graph --decorate --pretty=oneline --abbrev-commit
+    oldest-ancestor = !bash -c 'diff -u <(git rev-list --first-parent "${1:-develop}") <(git rev-list --first-parent "${2:-HEAD}") | sed -ne \"s/^ //p\" | head -1' -
+    trim = !"git fetch --prune; git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -D"
+    stale = !"git fetch --prune; git branch -vv | awk '/: gone]/{print $1}'"
+    branchname = name-rev --name-only HEAD
+    head-hash = log -1 --format=%H
+[rebase]
+    autoSquash = true
+[push]
+    default = simple
