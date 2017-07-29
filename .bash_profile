@@ -243,9 +243,4 @@ airportcycle() {
 
 # SSH, add private key permanently to authentication agent
 # -------------------------------------------------------
-if [[ $(hostname) =~ .+magnetic* ]]; then
- ssh-add ~/.ssh/id_rsa.magnetic &>/dev/null
-else
- ssh-add ~/.ssh/id_rsa.personal &>/dev/null
- export ORGNAME="levenate"
-fi
+ssh-add ~/.ssh/id_rsa.personal &>/dev/null
